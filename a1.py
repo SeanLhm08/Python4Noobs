@@ -5,6 +5,8 @@ __author__ = "Your Name"
 __email__ = "Your Email"
 __date__ = "03/03/2023"
 
+from typing import Any
+
 from constants import *
 
 # Write your functions here
@@ -14,10 +16,15 @@ def is_integer_regex(s):
        if(re.fullmatch(r"[-+]?\d+",i)) is not None:
            return i
 
+def get_recipe_name(recipe: tuple[str, str]) -> str:
+    return recipe[0]
 
-
-
-
+def parse_ingredient(raw_ingredient_detail: str) -> tuple[float, str, str]:
+    parsed = []
+    individual = raw_ingredient_detail.split(' ')
+    parsed.append(float(individual[0].strip()))
+    parsed.extend(individual[1:])
+    return tuple(parsed)
 
 
 def main():
