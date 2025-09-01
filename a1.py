@@ -26,9 +26,44 @@ def parse_ingredient(raw_ingredient_detail: str) -> tuple[float, str, str]:
     parsed.extend(individual[1:])
     return tuple(parsed)
 
+def create_recipe():
+    recipe = []
+    recipeName = input("Please enter recipe name: ")
+    recipe.append((recipeName,))  
+
+    while True:
+        ingredient = input("Please enter an ingredient (or press Enter to finish): ")
+        if not ingredient.strip():   
+            break
+        parts = ingredient.strip().split()
+        recipe.append(tuple(parts))
+
+    return tuple(recipe)
+
+
+def recipe_ingredients(recipe):
+    onlyIngredients = recipe[1:] 
+    pattern = r"[-+]?\d*\.?\d+"
+    newRecipeList = []
+    recipeList = []
+
+
+    for i in onlyIngredients:
+        a = list(i)
+        recipeList.append(a)
+
+    for i in recipeList:
+        for index, value in enumerate(i):
+            number = re.search(pattern, str(value))
+            if number:
+                i[index] = float(value)
+        newRecipeList.append(tuple(i))
+
+    return tuple(newRecipeList)
+
 
 def main():
-    """ Write your docstring """
+    """ Write your docstring """ 
     # cook book
     recipe_collection = [
         CHOCOLATE_PEANUT_BUTTER_SHAKE, 
@@ -59,7 +94,9 @@ def main():
         elif(command.startswith('rm')):
             recipe = command[2:].strip()
         elif(command == "g"):
-            print("Hello")
+            recipe = create_recipe()
+            ingredients = recipe_ingredients(recipe)
+
         elif(command == "ls"):
             print("Hello")
         elif(command == "ls -a"):
