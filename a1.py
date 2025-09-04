@@ -61,6 +61,9 @@ def recipe_ingredients(recipe):
 
     return tuple(newRecipeList)
 
+def add_recipe(new_recipe: tuple[str, str], recipes: list[tuple[str, str]]) -> None:
+    recipes.append(new_recipe)
+    return None
 
 def main():
     """ Write your docstring """ 
