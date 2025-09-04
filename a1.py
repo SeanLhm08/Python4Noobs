@@ -65,6 +65,12 @@ def add_recipe(new_recipe: tuple[str, str], recipes: list[tuple[str, str]]) -> N
     recipes.append(new_recipe)
     return None
 
+def find_recipe(recipe_name: str, recipes: list[tuple[str, str]]) -> tuple[str, str] | None:
+    for recipe in recipes:
+        if recipe[0] == recipe_name:
+            return recipe
+    return None
+
 def main():
     """ Write your docstring """ 
     # cook book
